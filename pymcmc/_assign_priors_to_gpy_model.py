@@ -39,9 +39,8 @@ def assign_priors_to_gpy_model(model):
                     Upon exit, the model will contain priors.
     """
     assert isinstance(model, GPy.core.Model)
-    param_names = model._get_param_names()
     if model.priors is None:
-        model.priors = [None] * len(param_names)
+        model.priors = [None] * len(model.param_array)
     # Loop over the parameters of the model
     for mp in model.flattened_parameters:
         print mp._constraints_str

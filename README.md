@@ -1,3 +1,5 @@
+*Note that this forked version works with new versions of GPy, however, only limited funcionality has been maintained. Specifically, `MetropolisHastings` with an `MALAProposal` is all that has been tested.*
+
 A python module implementing some generic MCMC routines
 =======================================================
 

@@ -8,7 +8,7 @@ Author:
 
 from _priors import *
 from _model import *
-from _mean_function import *
+#from _mean_function import *
 from _assign_priors_to_gpy_model import *
 from _gpy_model import *
 from _proposal import *

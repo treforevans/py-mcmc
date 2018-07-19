@@ -117,6 +117,7 @@ class MetropolisHastings(object):
         # Initialize counters
         self.accepted = 0.
         self.count = 0.
+        self.model.param_chain = []
         # Initialize the database
         if self.has_db:
             self.db.add_proposal(self.proposal.__getstate__())
@@ -144,7 +145,9 @@ class MetropolisHastings(object):
                                          + ', log_p: %.6f, acc. rate: %1.2f'
                                            % (self.model.log_p, self.acceptance_rate)
                                          + '\r')
-                        sys.stdout.flush() 
+                        sys.stdout.flush()
+                    # save to the list
+                    self.model.param_chain.append(self.model._state['parameters'])
                 # Tuning
                 if isinstance(self.proposal, TunableProposalConcept):
                     if (i > 0 and
@@ -160,3 +163,5 @@ class MetropolisHastings(object):
 
         if verbose:
             sys.stdout.write('\n')
+        self.model.param_chain = np.asarray(self.model.param_chain)
+        return self.model.param_chain
